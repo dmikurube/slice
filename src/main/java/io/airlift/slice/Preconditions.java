@@ -15,8 +15,6 @@
  */
 package io.airlift.slice;
 
-import javax.annotation.Nullable;
-
 import static java.lang.String.format;
 
 // forked from com.google.common.base.Preconditions
@@ -24,41 +22,6 @@ final class Preconditions
 {
     private Preconditions()
     {
-    }
-
-    public static void checkArgument(boolean expression, String errorMessage)
-    {
-        if (!expression) {
-            throw new IllegalArgumentException(errorMessage);
-        }
-    }
-
-    public static int checkPositionIndex(int index, int size)
-    {
-        return checkPositionIndex(index, size, "index");
-    }
-
-    public static int checkPositionIndex(int index, int size, @Nullable String desc)
-    {
-        // Carefully optimized for execution by hotspot (explanatory comment above)
-        if (index < 0 || index > size) {
-            throw new IndexOutOfBoundsException(badPositionIndex(index, size, desc));
-        }
-        return index;
-    }
-
-    public static long checkPositionIndex(long index, long size)
-    {
-        return checkPositionIndex(index, size, "index");
-    }
-
-    public static long checkPositionIndex(long index, long size, @Nullable String desc)
-    {
-        // Carefully optimized for execution by hotspot (explanatory comment above)
-        if (index < 0 || index > size) {
-            throw new IndexOutOfBoundsException(badPositionIndex(index, size, desc));
-        }
-        return index;
     }
 
     private static String badPositionIndex(long index, long size, String desc)
@@ -92,12 +55,5 @@ final class Preconditions
         }
         // end < start
         return format("end index (%s) must not be less than start index (%s)", end, start);
-    }
-
-    public static void verify(boolean condition)
-    {
-        if (!condition) {
-            throw new AssertionError();
-        }
     }
 }
