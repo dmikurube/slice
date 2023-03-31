@@ -32,34 +32,6 @@ final class Preconditions
         return reference;
     }
 
-    public static void checkArgument(boolean expression, String errorMessage)
-    {
-        if (!expression) {
-            throw new IllegalArgumentException(errorMessage);
-        }
-    }
-
-    public static void checkArgument(boolean expression, @Nullable String errorMessageTemplate, @Nullable Object... errorMessageArgs)
-    {
-        if (!expression) {
-            throw new IllegalArgumentException(format(errorMessageTemplate, errorMessageArgs));
-        }
-    }
-
-    public static int checkPositionIndex(int index, int size)
-    {
-        return checkPositionIndex(index, size, "index");
-    }
-
-    public static int checkPositionIndex(int index, int size, @Nullable String desc)
-    {
-        // Carefully optimized for execution by hotspot (explanatory comment above)
-        if (index < 0 || index > size) {
-            throw new IndexOutOfBoundsException(badPositionIndex(index, size, desc));
-        }
-        return index;
-    }
-
     private static String badPositionIndex(int index, int size, String desc)
     {
         if (index < 0) {
